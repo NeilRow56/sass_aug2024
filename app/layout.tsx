@@ -2,7 +2,7 @@ import { inter } from "@/components/shared/fonts";
 import "./globals.css";
 
 import { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "SASS App",
