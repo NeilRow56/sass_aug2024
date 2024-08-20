@@ -15,8 +15,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function NewSiteRoute() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center gap-4">
-      <Card className="max-w-[450px] text-primary  text-xl">
+    <div className="flex flex-col  flex-1  items-center justify-center gap-4">
+      <Card className=" max-w-2xl  flex-col text-primary  text-xl">
         <CardHeader>
           <CardTitle>Create Site</CardTitle>
           <CardDescription>
