@@ -54,7 +54,7 @@ export default async function SiteIdPage({
           </Link>
         </Button>
         <Button asChild>
-          <Link href={"/"}>
+          <Link href={`/dashboard/sites/${params.siteId}/create_article`}>
             <PlusCircle className="size-4 mr-2" />
             Create Article
           </Link>
@@ -65,7 +65,7 @@ export default async function SiteIdPage({
           title="You dont have any Articles created"
           description="You currently dont have any articles. please create some so that you can see them right here"
           buttonText="Create Article"
-          href={"/"}
+          href={`/dashboard/sites/${params.siteId}/create_article`}
         />
       ) : (
         <div>HHHHHHHH</div>
