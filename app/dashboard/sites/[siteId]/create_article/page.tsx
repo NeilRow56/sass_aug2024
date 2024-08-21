@@ -1,5 +1,6 @@
 "use client";
 
+import TailwindEditor from "@/components/dashboard/EditorWrapper";
 import { SubmitButton } from "@/components/dashboard/SubmitButtons";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +18,7 @@ import { UploadDropzone } from "@/utils/UploadthingComponents";
 import { ArrowLeft, Atom } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { JSONContent } from "novel";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
@@ -26,6 +28,7 @@ export default function CreateArticleRoute({
   params: { siteId: string };
 }) {
   const [imageUrl, setImageUrl] = useState<undefined | string>(undefined);
+  const [value, setValue] = useState<JSONContent | undefined>(undefined);
   return (
     <>
       <div className="flex items-center ">
@@ -88,6 +91,11 @@ export default function CreateArticleRoute({
                   }}
                 />
               )}
+            </div>
+            <div className="grid gap-2">
+              <Label>Article Content</Label>
+              <input type="hidden" />
+              <TailwindEditor onChange={setValue} initialValue={value} />
             </div>
             <SubmitButton text="Create Article" />
           </form>
