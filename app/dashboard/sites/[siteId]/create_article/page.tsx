@@ -12,16 +12,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+
+import { UploadDropzone } from "@/utils/UploadthingComponents";
 import { ArrowLeft, Atom } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function CreateArticleRoute({
   params,
 }: {
   params: { siteId: string };
 }) {
+  const [imageUrl, setImageUrl] = useState<undefined | string>(undefined);
   return (
     <>
       <div className="flex items-center ">
@@ -61,6 +65,29 @@ export default function CreateArticleRoute({
                 placeholder="Small Description for your blog article..."
                 className="h-32"
               />
+            </div>
+            <div className="grid gap-2">
+              <Label>Cover Image</Label>
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt="Uploaded Image"
+                  className="object-cover w-[200px] h-[200px] rounded-lg"
+                  width={200}
+                  height={200}
+                />
+              ) : (
+                <UploadDropzone
+                  onClientUploadComplete={(res) => {
+                    setImageUrl(res[0].url);
+                    toast.success("Image has been uploaded");
+                  }}
+                  endpoint="imageUploader"
+                  onUploadError={() => {
+                    toast.error("Something went wrong...");
+                  }}
+                />
+              )}
             </div>
             <SubmitButton text="Create Article" />
           </form>
