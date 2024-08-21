@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Metadata } from "next";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "SASS App",
@@ -25,6 +26,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Toaster richColors closeButton />
       </body>
     </html>
   );
