@@ -1,10 +1,43 @@
 import { EmptyState } from "@/components/dashboard/EmptyState";
 import { Button } from "@/components/ui/button";
+import db from "@/lib/db";
+import { requireUser } from "@/lib/requireUser";
+
 import { Book, PlusCircle, Settings } from "lucide-react";
 import Link from "next/link";
+
 import React from "react";
 
-export default function SiteIdPage() {
+async function getData(userId: string, siteId: string) {
+  const data = await db.post.findMany({
+    where: {
+      id: siteId,
+      userId: userId,
+    },
+    select: {
+      image: true,
+      title: true,
+      createdAt: true,
+      id: true,
+      Site: {
+        select: {
+          subdirectory: true,
+        },
+      },
+    },
+  });
+
+  return data;
+}
+
+export default async function SiteIdPage({
+  params,
+}: {
+  params: { siteId: string };
+}) {
+  const user = await requireUser();
+  const data = await getData(user.id, params.siteId);
+
   return (
     <>
       <div className="flex w-full justify-end gap-x-4">
@@ -27,13 +60,16 @@ export default function SiteIdPage() {
           </Link>
         </Button>
       </div>
-
-      <EmptyState
-        title="You dont have any Articles created"
-        description="You currently dont have any articles. please create some so that you can see them right here"
-        buttonText="Create Article"
-        href={"/"}
-      />
+      {data === undefined || data.length === 0 ? (
+        <EmptyState
+          title="You dont have any Articles created"
+          description="You currently dont have any articles. please create some so that you can see them right here"
+          buttonText="Create Article"
+          href={"/"}
+        />
+      ) : (
+        <div>HHHHHHHH</div>
+      )}
     </>
   );
 }

@@ -56,9 +56,10 @@ export default async function SitesPage() {
               <Image
                 src={item.imageUrl ?? Defaultimage}
                 alt={item.name}
-                className="rounded-t-lg object-cover w-full h-[200px]"
+                className="rounded-t-lg object-cover "
                 width={400}
                 height={200}
+                style={{ width: "100%", height: "auto" }}
               />
               <CardHeader>
                 <CardTitle className="truncate">{item.name}</CardTitle>
