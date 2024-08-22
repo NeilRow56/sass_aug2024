@@ -11,19 +11,17 @@ import React from "react";
 async function getData(userId: string, siteId: string) {
   const data = await db.post.findMany({
     where: {
-      id: siteId,
       userId: userId,
+      siteId: siteId,
     },
     select: {
       image: true,
       title: true,
       createdAt: true,
       id: true,
-      Site: {
-        select: {
-          subdirectory: true,
-        },
-      },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
