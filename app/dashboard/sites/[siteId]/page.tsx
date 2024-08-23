@@ -71,7 +71,7 @@ export default async function SiteIdPage({
           </Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link href={"/"}>
+          <Link href={`/dashboard/sites/${params.siteId}/settings`}>
             <Settings className="size-4 mr-2" />
             Settings
           </Link>

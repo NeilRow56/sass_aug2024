@@ -53,14 +53,16 @@ export default async function SitesPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
           {data.map((item) => (
             <Card key={item.id}>
-              <Image
-                src={item.imageUrl ?? Defaultimage}
-                alt={item.name}
-                className="rounded-t-lg object-cover "
-                width={400}
-                height={200}
-                style={{ width: "100%", height: "auto" }}
-              />
+              <div className="h-[250px]">
+                <Image
+                  src={item.imageUrl ?? Defaultimage}
+                  alt={item.name}
+                  className="rounded-t-lg object-cover "
+                  width={400}
+                  height={200}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
               <CardHeader>
                 <CardTitle className="truncate">{item.name}</CardTitle>
                 <CardDescription className=" line-clamp-3 h-[60px]">
