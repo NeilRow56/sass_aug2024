@@ -103,11 +103,21 @@ export default async function SiteIdPage({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Image</TableHead>
-                    <TableHead>Title</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Created At</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead className="font-bold text-lg text-primary">
+                      Image
+                    </TableHead>
+                    <TableHead className="font-bold text-lg text-primary">
+                      Title
+                    </TableHead>
+                    <TableHead className="font-bold text-lg text-primary">
+                      Status
+                    </TableHead>
+                    <TableHead className="font-bold text-lg text-primary">
+                      Created At
+                    </TableHead>
+                    <TableHead className="text-right font-bold text-lg text-primary">
+                      Actions
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
