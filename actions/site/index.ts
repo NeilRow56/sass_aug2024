@@ -2,7 +2,7 @@
 
 import db from "@/lib/db";
 import { requireUser } from "@/lib/requireUser";
-import { siteSchema } from "@/schemas/site";
+import { SiteCreationSchema } from "@/schemas/site";
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
 
@@ -10,7 +10,17 @@ export async function CreateSiteAction(prevState: any, formData: FormData) {
   const user = await requireUser();
 
   const submission = await parseWithZod(formData, {
-    schema: siteSchema,
+    schema: SiteCreationSchema({
+      async isSubdirectoryUnique() {
+        const exisitngSubDirectory = await db.site.findUnique({
+          where: {
+            subdirectory: formData.get("subdirectory") as string,
+          },
+        });
+        return !exisitngSubDirectory;
+      },
+    }),
+    async: true,
   });
   if (submission.status !== "success") {
     return submission.reply();
